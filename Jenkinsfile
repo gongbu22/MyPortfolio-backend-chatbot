@@ -18,7 +18,7 @@ pipeline {
 
         stage('Docker Image Building') {
             steps {
-                dif('MyPortfolio-backend-chatbot') {
+                dir('MyPortfolio-backend-chatbot') {
                     sh '''
                     docker build -t ${DOCKER_IMAGE_OWNER}/myportfolio-backend-chatbot:latest .
                     '''
