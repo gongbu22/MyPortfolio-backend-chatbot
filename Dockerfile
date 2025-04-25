@@ -3,7 +3,6 @@ FROM python:3.11-slim
 WORKDIR /app
 
 COPY requirements.txt .
-COPY .env .
 COPY main.py .
 COPY app/ app/
 
