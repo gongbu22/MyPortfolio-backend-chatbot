@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_OWNER = 'dangdang42'
+        DOCKER_BUILD_TAG = "v${env.BUILD_NUMBER}"
         DOCKER_PWD = credentials('dockerhub')
     }
 
@@ -20,7 +21,8 @@ pipeline {
             steps {
                 dir('MyPortfolio-backend-chatbot') {
                     sh '''
-                    docker build -t ${DOCKER_IMAGE_OWNER}/myportfolio-backend-chatbot:latest .
+                    docker build -t ${DOCKER_IMAGE_OWNER}/myportfolio-backend-chatbot:latest -t ${DOCKER_IMAGE_OWNER}/myportfolio-backend-chatbot:${DOCKER_BUILD_TAG} .
+                    docker tag ${DOCKER_IMAGE_OWNER}/myportfolio-backend-chatbot:latest ${DOCKER_IMAGE_OWNER}/myportfolio-backend-chatbot:${DOCKER_BUILD_TAG}
                     '''
                 }
             }
@@ -36,6 +38,7 @@ pipeline {
         stage('Docker Image pushing') {
             steps {
                 sh '''
+                docker push ${DOCKER_IMAGE_OWNER}/myportfolio-backend-chatbot:${DOCKER_BUILD_TAG} || true
                 docker push ${DOCKER_IMAGE_OWNER}/myportfolio-backend-chatbot:latest || true
                 '''
             }
