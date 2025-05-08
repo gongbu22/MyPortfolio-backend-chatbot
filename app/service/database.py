@@ -13,7 +13,8 @@ MONGO_HOST = os.getenv("MONGO_HOST")
 MONGO_PORT = os.getenv("MONGO_PORT")
 MONGO_DB_NAME = os.getenv("MONGO_DB_NAME")
 
-MONGO_URI = f"mongodb://{MONGO_USER}:{MONGO_PASS}@{MONGO_HOST}:{MONGO_PORT}/?authSource=admin"
+# MONGO_URI = f"mongodb://{MONGO_USER}:{MONGO_PASS}@{MONGO_HOST}:{MONGO_PORT}/?authSource=admin"
+MONGO_URI = f"mongodb://{MONGO_HOST}:{MONGO_PORT}"
 
 db_client = None  # 전역 DB 클라이언트
 
@@ -23,7 +24,7 @@ async def init_db():
         print("👉 MongoDB 연결 시도 중...")
         db_client = AsyncIOMotorClient(MONGO_URI)
         database = db_client[MONGO_DB_NAME]
-        # print("Database: ", database)
+        print("Database: ", database)
         await init_beanie(database=database, document_models=[aboutme])
         print("✅ MongoDB 연결 및 Beanie 초기화 완료!")
     except Exception as e:
