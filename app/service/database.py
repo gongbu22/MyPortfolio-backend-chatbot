@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import os
 from app.models.aboutme import aboutme
 
-load_dotenv()
+# load_dotenv()
 
 MONGO_USER = os.getenv("MONGO_USER")
 MONGO_PASS = os.getenv("MONGO_PASS")
