@@ -7,11 +7,14 @@ from app.models.aboutme import aboutme
 
 # load_dotenv()
 
+print("mongo_user: ", os.getenv("MONGO_USER"))
+
 MONGO_USER = os.getenv("MONGO_USER")
 MONGO_PASS = os.getenv("MONGO_PASS")
 MONGO_HOST = os.getenv("MONGO_HOST")
 MONGO_PORT = os.getenv("MONGO_PORT")
 MONGO_DB_NAME = os.getenv("MONGO_DB_NAME")
+
 
 MONGO_URI = f"mongodb://{MONGO_USER}:{MONGO_PASS}@{MONGO_HOST}:{MONGO_PORT}/?authSource=admin"
 # MONGO_URI = f"mongodb://{MONGO_HOST}:{MONGO_PORT}"
