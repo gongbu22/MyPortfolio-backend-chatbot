@@ -20,7 +20,8 @@ react_port = os.getenv("REACT_APP_PORT", "5173")
 
 
 origins = [
-    f"${react_host}:${react_port}",
+    f"{react_host}:{react_port}",
+    react_host,
     "http://localhost:5173",
     "http://127.0.0.1:5173"  # React 프론트엔드 허용
 ]
